@@ -25,7 +25,7 @@ const Paises = () => {
     </ul>
   )
 }
-// creamos componente PaisusesState para el estado, creamos parametros para usarlo como variable para que cambie la ruta  y obtenemos datos del json.
+// creamos componente Pais ,useState para el estado, creamos parametros para usarlo como variable para que cambie la ruta  y obtenemos datos del json.
 const Pais = () => {
   const [pais, setPais] = useState([]);
   const parametros = useParams();
