@@ -8,7 +8,7 @@ const Productos = () => {
   const producs = useFetch("https://raw.githubusercontent.com/wedeploy-examples/supermarket-web-example/master/products.json");
     return (  
         <ul>
-          { producs.filter(p => p.price > 15 ).map((pro, i) =><li key={i}><h3>titulo</h3> {pro.title} <h3>precio</h3>{pro.price}<h3>Description</h3> {pro.description}</li>) } 
+          { producs.filter(p => p.price > 15 ).map((pro, i) =><li key={i}><h3>titulo</h3> {pro.title} <h3>precio</h3>${pro.price}<h3>Description</h3> {pro.description}</li>) } 
         </ul>      
     )
 }
