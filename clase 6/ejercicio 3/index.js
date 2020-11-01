@@ -2,17 +2,26 @@ var http = require('http');
 const titulo= "Notas"; 
 const notas = [{"Pedro":{"Matematica": 10,"Geografia": 6,"Historia": 9}},{"Juana":{"Matematica": 5,"Geografia": 10,"Historia": 7}}]
 
-
 const alumno = Object.keys(notas[0])
+const materias1 = Object.values(notas[0])
 const materias = Object.values(notas[0].Pedro)
 var suma = 0;
-
+var mayor = 0;
+    //sumo el array obtenido en materias [10,6,9]
     materias.forEach (function(materia){
         suma += materia;
     });
 
-// console.log(materias)
-// console.log(alumno)    
+    for(i = 0; i < materias.lenght; i++){
+        
+      if (materias[i] > mayor)
+        {
+            mayor = materias[i];
+        };
+    }
+    
+//console.log(materias)
+console.log(mayor)    
     
 http.createServer(function (req, res) {
     res.writeHead(200, {'Content-Type': 'text/html'});
