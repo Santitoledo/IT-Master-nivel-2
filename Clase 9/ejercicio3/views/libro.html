@@ -1,0 +1,26 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ libro.volumeInfo.title }}</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+    <h1>{{ libro.volumeInfo.title }}</h1>
+    <h2>{{ libro.volumeInfo.subtitle }}</h2>
+    {% if libro.volumeInfo.imageLinks.thumbnail %}
+        <img src="{{ libro.volumeInfo.imageLinks.thumbnail }}" alt="thumbimg">
+    {% endif %}
+    <p>Autor(es):</p>
+    {% for autor in libro.volumeInfo.authors %}
+        {{autor}},
+    {% else %}
+        <li>No tiene autores.</li>
+    {% endfor %}
+    <p>Descripcion: {{libro.volumeInfo.description}}</p>
+    <p>Cantidad de paginas: {{libro.volumeInfo.pageCount}}</p>
+    <p>Editorial: {{libro.volumeInfo.publisher}}</p>
+</body>
+</html>
