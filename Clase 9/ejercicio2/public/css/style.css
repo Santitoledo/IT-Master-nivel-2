@@ -1,0 +1,18 @@
+body{
+    background-color: darkgreen;
+}
+li{
+    list-style: square;
+    font-size: 2em;
+}
+a:-webkit-any-link {
+    text-decoration:none;
+    color: black;
+    transform:scale(1);
+        -ms-transform:scale(1);
+        -moz-transform:scale(1);
+}
+#contain{
+    
+    background-color: crimson;
+}

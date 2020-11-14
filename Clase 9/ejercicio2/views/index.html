@@ -1,0 +1,21 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{titulo}}</title>
+    <link rel="stylesheet" href="../css/style.css">
+    
+</head>
+<body>
+    <h1>{{t1}}</h1>
+        <ul>
+        {% for actor in actores|sort(false, true, 'name') %}
+          <li><a href="actor/{{actor.objectID}}">{{ actor.name }}</a></li>
+        {% endfor %}        
+    </ul>     
+    <a href="/">☝</a>
+    <p> En total hay {{actores.length}} actores</p>
+</body>
+</html>
