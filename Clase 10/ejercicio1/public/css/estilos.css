@@ -1,0 +1,15 @@
+#contain{
+    background-color: lightslategrey;
+    text-align: center;
+}
+#contain2{
+    background-color: lightslategrey;
+    text-align: center;
+}
+
+input{
+     width:200px;
+     display: block;
+     margin:2% 41% !important;
+     text-align: center;
+}
