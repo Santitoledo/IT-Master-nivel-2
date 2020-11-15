@@ -13,6 +13,11 @@
         <h2>Año: {{year}}</h2>
         <h2>KM: {{km}}</h2>
 
+        {% if (currentY-3)>=year or km>=60000 %}
+            <h1>Debe hacer la VTV</h1>
+        {% else %}
+            <h1>No debe hacer la vtv</h1>
+        {% endif %}
         <h1><a href="/">Home</a></h1>
     </div> 
 </body>

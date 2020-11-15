@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
-    "nunjucks": "^3.2.2"
+    "nunjucks": "^3.2.2",
+    "sweetalert": "^2.1.2"
   }
 }
