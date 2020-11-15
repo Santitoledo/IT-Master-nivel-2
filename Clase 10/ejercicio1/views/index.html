@@ -3,14 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{{titulo}}</title>
+    <script src="../static/js/valida.js"></script>
 </head>
-<body>
-    <!DOCTYPE html> 
-    <html> 
-    <head> 
-        <title>VTV</title>
-        <script src="../script/valida.js"></script>
+<body>  
         <style>
             input{
                 width:200px;
@@ -18,17 +14,12 @@
                 margin:10px;
             }
         </style>
- 
-    </head> 
-    <body>
-        <form name="formu" method="get" action="/turno">
-            <input type="text" name="patente" placeholder="Ingrese su patente"/>
-            <input type="number" name="year" placeholder="Ingrese el año del auto" min="1900" max="2020" />
-            <input type="number" name="km" placeholder="Ingrese el kilometraje" min="0"/>
+        <form name="formu" method="post" action="/turno">
+            <input type="text" name="patente" placeholder="Ingrese su patente" required/>
+            <input type="number" name="year" placeholder="Ingrese el año del auto" min="1900" max="2020" required/>
+            <input type="number" name="km" placeholder="Ingrese el kilometraje" min="0" required/>
             <input type="button" value="Enviar" onclick="validar()"/>
         </form>
-        
-    </body> 
-    </html>    
+        <p id="deu"></p> 
 </body>
 </html>

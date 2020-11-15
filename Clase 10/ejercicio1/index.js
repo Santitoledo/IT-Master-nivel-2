@@ -11,16 +11,34 @@ nunjucks.configure('views', {
     autoescape: false,
     express: app
 });
+var bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', function(req, res) {    
-    fetch('https://www.googleapis.com/books/v1/volumes?q=node.js')
-    .then(response => response.json())
-    .then(libros => res.render('index.html',{titulo: "Los Libros",th1 : "Libros", libros:libros}))
-});
-app.get('/libro/:id', function(req, res) {
-    fetch('https://www.googleapis.com/books/v1/volumes/'+req.params.id)
-    .then(response => response.json())
-    .then(libro => res.render('libro.html', {libro:libro}))
-});
+function currentYear (){
+    var year = document.forms.year.value;
+    const currentDay = new Date();
+    const currentY = currentDay.getFullYear();
+    if((currentY - year) <= 3){
+        return false;
+    }else{
+        return true;
+    }
+}
 
-app.listen(8080);
+app.get('/', function(req, res) {
+    res.render('index.html',{titulo:"VTV", t1:"Debo realizar la VTV?"})    
+    });
+
+app.post("/turnos", (req, res) => {
+    var patente1 =  req.body.patente;
+    var km1 = req.body.km;
+    var year1 = req.body.year;
+    if(currentYear(year) || req.body.km > 60000){
+        res.render('turnos.html',{titulo2: "Turnos",t2:"datos vehículo",patente:patente1,km:km1,year:year1})
+    }else{
+        res.status(200).send(`<p>NO debe hacer vtv`)
+    }
+
+});
+app.listen(8080); 
