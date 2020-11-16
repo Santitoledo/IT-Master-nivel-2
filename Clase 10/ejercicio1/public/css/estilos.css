@@ -1,15 +1,26 @@
 #contain{
     background-color: lightslategrey;
     text-align: center;
+    width: 40%;
+    margin: 1% 30%;
 }
 #contain2{
     background-color: lightslategrey;
     text-align: center;
+    width: 40%;
+    margin: 1% 30%;
 }
 
 input{
      width:200px;
      display: block;
-     margin:2% 41% !important;
+     margin-left: 30% !important;
      text-align: center;
+}
+label{
+    width: 200px;
+      
+}
+.btn{
+    margin-top: 5px;
 }
