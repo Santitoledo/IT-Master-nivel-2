@@ -18,7 +18,7 @@ function validar() {
                 }
             } 
             else{
-                alert("NO Es el formato: aaa-111 o aa-111-aa");
+                alert("NO Es el formato: AAA-111 o AA-111-BB");
             }
            
         
