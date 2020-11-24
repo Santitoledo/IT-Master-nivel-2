@@ -11,7 +11,7 @@ app.get('/', (req, res)=>{
     //dbo.collection("personajesdark").find({"edad":20}).forEach((data) => {   		
     dbo.collection("Series").find().forEach((data) => {   		
             
-            r += `<a href="porserie/${data.titulo}"><li>${data.título}</li></a>`;  		
+            r += `<a href="porserie/${data.título}"><li>${data.título}</li></a>`;  		
         }, ()=>{  	
           res.send("<header><h1>Series</h1></header><ul>" + r + "</ul>");			
       });
