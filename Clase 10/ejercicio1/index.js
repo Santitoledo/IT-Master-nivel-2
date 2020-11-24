@@ -1,6 +1,8 @@
 const express = require('express');
 const nunjucks = require('nunjucks');
 const fetch = require('node-fetch');
+app.use(express.static('public'));
+
 // Inicializamos express
 const app = express();
 // Declaramos public
