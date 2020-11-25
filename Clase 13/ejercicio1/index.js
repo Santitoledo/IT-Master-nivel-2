@@ -1,5 +1,5 @@
 var express = require('express');
-//const nunjucks = require('nunjucks');
+const nunjucks = require('nunjucks');
 var	app = express();
 
 const MongoClient = require('mongodb').MongoClient;
@@ -9,10 +9,10 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-/*nunjucks.configure('views', {
+nunjucks.configure('views', {
     autoescape: true,
     express: app
-  });*/
+  });
 
 app.get('/', (req, res)=>{	  
     MongoClient.connect(MONGO_URL,{ useUnifiedTopology: true }, (err, db) => {  
@@ -33,14 +33,8 @@ app.get('/', (req, res)=>{
     var id = parseInt(req.params.id);     
     dbo.collection("Platos de comida").findOne({"id":id},function(err, data) {   	
 	    if (data){     
-            res.status(200).send(`
-            <header><h1>Plato</h1></header>           
-            <div>
-            <h1>${data.name}</h1>
-            <img src=${data.img}>
-            </div>            
-            <p><a href='/'>Regresar a la home</a></p>
-            `);	
+            res.status(200).render('platos.html',{name:data.name,img:data.img,descrip:data.descripción,categoria:data.categoria}
+            );	
         }else{
             res.status(404).send(`<p>ERROR</p>`)
 
@@ -54,13 +48,8 @@ app.get('/', (req, res)=>{
     var id = parseInt(req.params.id);     
     dbo.collection("Categorias").findOne({"id":id},function(err, data) {   	
 	    if (data){     
-            res.status(200).send(`
-            <header><h1>Categorias</h1></header>           
-            <div>
-            <h1>${data.categoria}</h1>
-            </div>            
-            <p><a href='/'>Regresar a la home</a></p>
-            `);	
+            res.status(200).render('categoria.html',{categoria:data.categoria}
+           );	
         }else{
             res.status(404).send(`<p>ERROR</p>`)
 
@@ -108,8 +97,8 @@ app.post('/altacat', (req, res)=>{
     // key de la base datos : req.body.name_campo_formulario
     dbo.collection("Categorias").insertOne(
         {   
-            categoria : req.body.categoria
-            
+            categoria : req.body.categoria,
+            id: req.body.id
         },
         function (err, res) {
             if (err) {
@@ -121,4 +110,5 @@ app.post('/altacat', (req, res)=>{
         res.send('<p>Categoria agregada exitosamente</p><p><a href="/agregarCat">Agregas otra categoria</a></p><p><a href="/">Regresar a Inicio</a></p>')
     })
 })
+
 app.listen(8080);
