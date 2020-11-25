@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platos</title>
+    <style>
+        label,input{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="cont">
+        <h1>Dar de alta un Plato</h1>
+        <form method="POST" action="/alta">
+            <label for="id">id</label>
+            <input type="number" name="id" placeholder="id.." min=""required>
+            <label for="title">Agregar plato</label>
+            <input type="text" name="name" placeholder="Nombre.." required>
+            <label for="title">Agregar descripción</label>
+            <input type="text" name="descrip" placeholder="descripción.." required>
+            <label for="imagen">Imagen</label>
+            <input type="text" name="imagen" placeholder="agrega url imagen.." required> 
+            <select name="categoria">
+                <option value="minuta">Minuta</option>
+                <option value="parrilla">Parrilla</option>
+                <option value="pastas">Pasta</option>
+                <option value="postre">Postre</option>
+                <option value="guarnicion">Guarnicion</option>  
+            <input type="submit" value="Agregar"> 
+        </form>
+        <p><a href='/'>Regresar a la home</a></p>
+    </div>
+</body>

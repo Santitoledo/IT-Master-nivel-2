@@ -11,7 +11,7 @@ app.get('/', (req, res)=>{
     //dbo.collection("personajesdark").find({"edad":20}).forEach((data) => {   		
     dbo.collection("Series").find().forEach((data) => {   		
             
-            r += `<a href="porserie/${data.título}"><li>${data.título}</li></a>`;  		
+            r += `<a href="porserie/${data.id}"><li>${data.título}</li></a>`;  		
         }, ()=>{  	
           res.send("<header><h1>Series</h1></header><ul>" + r + "</ul>");			
       });
@@ -27,7 +27,7 @@ app.get('/', (req, res)=>{
         if (err) throw err; 
         if(data){
             
-            res.send(`<h2>El título es:${data.título}, protagonizado por ${data.protagonista}, su lanzamiento fue en ${data.year}, realizada en ${data.país}</h2>`);
+            res.send(`<h2>El título es:${data.título}, protagonizado por ${data.protagonista}, su lanzamiento fue en ${data.year}, realizada en ${data.pais}</h2> <a href="/">Home</a>`);
         }
         else{
             res.send("No encontrado");
