@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Menu</h1>
+    </header>
+    <nav>
+        <ul>
+            {% for cat in data[1] %}
+                <li><a href="/categoria/{{ cat.id }}">{{ cat.categoria }}</a></li>
+            {% endfor %}            
+        </ul>
+    </nav>
+
+    <p><a href='/agregar'>Agregar platos</a></p>
+    <p><a href='/agregarCat'>Agregar categorias</a></p>
+</body>
+</html>

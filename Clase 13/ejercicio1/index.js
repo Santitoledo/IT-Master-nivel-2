@@ -13,8 +13,8 @@ nunjucks.configure('views', {
     autoescape: true,
     express: app
   });
-
-app.get('/', (req, res)=>{	  
+// esta home muestra los platos.
+/*app.get('/', (req, res)=>{	  
     MongoClient.connect(MONGO_URL,{ useUnifiedTopology: true }, (err, db) => {  
     const dbo = db.db("menu");  
     var r = "";
@@ -24,8 +24,26 @@ app.get('/', (req, res)=>{
           res.send("<header><h1>Menu</h1></header><ul>" + r + "</ul><p><a href='/agregar'>Agregar platos</a></p><p><a href='/agregarCat'>Agregar categorias</a></p>");			
       });
   });	
-  });	
-
+  });*/
+  app.get('/', (req, res)=>{	  
+    MongoClient.connect(MONGO_URL,{ useUnifiedTopology: true }, (err, db) => {  
+    const dbo = db.db("menu"); 
+    var data = [];   
+    dbo.collection("Platos de comida").find().toArray()
+    .then((dataplatos) => { 
+  // en data[0] quedan los platos
+      data.push(dataplatos)
+    }) 
+    .then(() => {
+      dbo.collection("Categorias").find().toArray()
+      .then((datacategorias) => { 
+  // en data[1] quedan los categorias
+        data.push(datacategorias)      
+        res.render('index.html',{data:data});
+      }) 
+    })
+  });
+  });
 
   app.get('/plato/:id', (req, res)=>{	  
     MongoClient.connect(MONGO_URL,{ useUnifiedTopology: true }, (err, db) => {  
@@ -42,13 +60,13 @@ app.get('/', (req, res)=>{
       });
   });	
   });	
-  app.get('/categoria/:id', (req, res)=>{	  
+ app.get('/categoria/:id', (req, res)=>{	  
     MongoClient.connect(MONGO_URL,{ useUnifiedTopology: true }, (err, db) => {  
     const dbo = db.db("menu"); 
     var id = parseInt(req.params.id);     
     dbo.collection("Categorias").findOne({"id":id},function(err, data) {   	
 	    if (data){     
-            res.status(200).render('categoria.html',{categoria:data.categoria}
+            res.status(200).render('categorias.html',{id:data.id,name:data.name}
            );	
         }else{
             res.status(404).send(`<p>ERROR</p>`)

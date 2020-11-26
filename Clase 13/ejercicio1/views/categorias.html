@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Platos</h1>
+    </header>
+    <nav>
+        <ul>
+            {% for cat in data[0] %}
+                <li><a href="/plato/{{cat.id}}">{{ cat.name }}</a></li>
+            {% endfor %}            
+        </ul>
+    </nav>
+    
+
+</body>
+</html>
