@@ -66,15 +66,14 @@ nunjucks.configure('views', {
         var data = [];   
         dbo.collection("Platos de comida").find().toArray()
         .then((dataplatos) => { 
-      // en data[0] quedan los platos
           data.push(dataplatos)
         }) 
         .then(() => {
           dbo.collection("Categorias").find().toArray()
           .then((datacategorias) => { 
-      // en data[1] quedan los categorias
-            data.push(datacategorias)      
-            res.render('categorias.html',{id:data.id,name:data.name,data:data});
+            data.push(datacategorias) 
+            console.log(data[1]); 
+            res.render('categorias.html',{id:data.id,name:data.name,data:data,data1:data[1].categoria});
           }) 
         })
       });
@@ -121,7 +120,7 @@ app.post('/altacat', (req, res)=>{
     dbo.collection("Categorias").insertOne(
         {   
             categoria : req.body.categoria,
-            id: req.body.id
+            id: parseInt(req.body.id)
         },
         function (err, res) {
             if (err) {
