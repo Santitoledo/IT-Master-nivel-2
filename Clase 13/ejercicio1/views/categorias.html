@@ -12,7 +12,9 @@
     <nav>
         <ul>
             {% for cat in data[0] %}
-                <li><a href="/plato/{{cat.id}}">{{ cat.name }}</a></li>
+                 {%if cat.categoria == "postre" %}
+                        <li><a href="/plato/{{cat.id}}">{{ cat.name }}</a></li>
+                {% endif %}
             {% endfor %}            
         </ul>
     </nav>

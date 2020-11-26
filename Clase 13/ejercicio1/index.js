@@ -62,19 +62,24 @@ nunjucks.configure('views', {
   });	
  app.get('/categoria/:id', (req, res)=>{	  
     MongoClient.connect(MONGO_URL,{ useUnifiedTopology: true }, (err, db) => {  
-    const dbo = db.db("menu"); 
-    var id = parseInt(req.params.id);     
-    dbo.collection("Categorias").findOne({"id":id},function(err, data) {   	
-	    if (data){     
-            res.status(200).render('categorias.html',{id:data.id,name:data.name}
-           );	
-        }else{
-            res.status(404).send(`<p>ERROR</p>`)
-
-        }    		
+        const dbo = db.db("menu"); 
+        var data = [];   
+        dbo.collection("Platos de comida").find().toArray()
+        .then((dataplatos) => { 
+      // en data[0] quedan los platos
+          data.push(dataplatos)
+        }) 
+        .then(() => {
+          dbo.collection("Categorias").find().toArray()
+          .then((datacategorias) => { 
+      // en data[1] quedan los categorias
+            data.push(datacategorias)      
+            res.render('categorias.html',{id:data.id,name:data.name,data:data});
+          }) 
+        })
       });
-  });	
-  });
+      });
+    
 
 // Mostramos el formulario
 app.get('/agregar', (req, res)=> {
