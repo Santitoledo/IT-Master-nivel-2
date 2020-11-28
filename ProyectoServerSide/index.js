@@ -46,12 +46,11 @@ app.all('/login', function (req, res) {
 
     MongoClient.connect(MONGO_URL,{ useUnifiedTopology: true }, (err, db) => {  
         const dbo = db.db("restapi");  
-        dbo.collection("usuarios ").findOne({$and:[{"user":req.body.user},{"pass":req.body.pass}]},function(err, data) {             
+        dbo.collection("usuarios").findOne({$and:[{"user":req.body.user},{"pass":req.body.pass}]},function(err, data) {             
             //console.log(data); 
             if(data){
-                req.session.login = true;  
-                req.session.name = data.name;   
-                console.log(req.session.name)            
+                req.session.admin = true;  
+                req.session.name = data.name;               
                 res.status(200).render('add.html',);  
             }
             else{
