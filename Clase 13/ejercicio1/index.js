@@ -13,23 +13,12 @@ nunjucks.configure('views', {
     autoescape: true,
     express: app
   });
-// esta home muestra los platos.
-/*app.get('/', (req, res)=>{	  
-    MongoClient.connect(MONGO_URL,{ useUnifiedTopology: true }, (err, db) => {  
-    const dbo = db.db("menu");  
-    var r = "";
-    dbo.collection("Platos de comida").find().forEach((data) => {   		
-            r += `<li><a href="/plato/${data.id}">${data.name}</a></li>`; 		
-        }, ()=>{  	
-          res.send("<header><h1>Menu</h1></header><ul>" + r + "</ul><p><a href='/agregar'>Agregar platos</a></p><p><a href='/agregarCat'>Agregar categorias</a></p>");			
-      });
-  });	
-  });*/
+
   app.get('/', (req, res)=>{	  
     MongoClient.connect(MONGO_URL,{ useUnifiedTopology: true }, (err, db) => {  
     const dbo = db.db("menu"); 
     var data = [];   
-    dbo.collection("Platos de comida").find().toArray()
+    dbo.collection("Platos").find().toArray()
     .then((dataplatos) => { 
   // en data[0] quedan los platos
       data.push(dataplatos)
@@ -49,7 +38,7 @@ nunjucks.configure('views', {
     MongoClient.connect(MONGO_URL,{ useUnifiedTopology: true }, (err, db) => {  
     const dbo = db.db("menu"); 
     var id = parseInt(req.params.id);     
-    dbo.collection("Platos de comida").findOne({"id":id},function(err, data) {   	
+    dbo.collection("Platos").findOne({"id":id},function(err, data) {   	
 	    if (data){     
             res.status(200).render('platos.html',{name:data.name,img:data.img,descrip:data.descripción,categoria:data.categoria}
             );	
@@ -60,25 +49,17 @@ nunjucks.configure('views', {
       });
   });	
   });	
- app.get('/categoria/:id', (req, res)=>{	  
+
+  // Trae los platos de la categoria que recibe como parámetro
+ app.get('/categoria/:cat', (req, res)=>{	  
     MongoClient.connect(MONGO_URL,{ useUnifiedTopology: true }, (err, db) => {  
-        const dbo = db.db("menu"); 
-        var data = [];   
-        dbo.collection("Platos de comida").find().toArray()
-        .then((dataplatos) => { 
-          data.push(dataplatos)
-        }) 
-        .then(() => {
-          dbo.collection("Categorias").find().toArray()
-          .then((datacategorias) => { 
-            data.push(datacategorias) 
-            console.log(data[1]); 
-            res.render('categorias.html',{id:data.id,name:data.name,data:data,data1:data[1].categoria});
+        const dbo = db.db("menu");         
+        dbo.collection("Platos").find({"categoria":req.params.cat}).toArray()
+          .then((data) => {      
+            res.render('categorias.html',{data:data});
           }) 
         })
       });
-      });
-    
 
 // Mostramos el formulario
 app.get('/agregar', (req, res)=> {
@@ -88,13 +69,12 @@ app.get('/agregarCat', (req, res)=> {
     res.sendFile(__dirname + '/agregarCat.html')
 })
 
-
 // Recibimos la información del formulario
 app.post('/alta', (req, res)=>{
     MongoClient.connect(MONGO_URL,{ useUnifiedTopology: true }, (err, db) => {  
     const dbo = db.db("menu")
     // key de la base datos : req.body.name_campo_formulario
-    dbo.collection("Platos de comida").insertOne(
+    dbo.collection("Platos").insertOne(
         {   
             id: parseInt(req.body.id),
             name: req.body.name,
@@ -120,7 +100,7 @@ app.post('/altacat', (req, res)=>{
     dbo.collection("Categorias").insertOne(
         {   
             categoria : req.body.categoria,
-            id: parseInt(req.body.id)
+            id: req.body.id
         },
         function (err, res) {
             if (err) {

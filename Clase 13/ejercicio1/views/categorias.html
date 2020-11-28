@@ -10,15 +10,14 @@
         <h1>Platos</h1>
     </header>
     <nav>
+        <h1></h1>
         <ul>
-            {% for cat in data[0] %}
-                 {%if cat.categoria === "minuta" %}
-                        <li><a href="/plato/{{cat.id}}">{{ cat.name }}</a></li>
-                {% endif %}
+            {% for plato in data %}
+                <li><a href="/plato/{{plato.id}}">{{ plato.name }}</a></li>                
             {% endfor %}            
         </ul>
     </nav>
     
-
+    <p><a href='/'>Regresar a la home</a></p>
 </body>
 </html>
