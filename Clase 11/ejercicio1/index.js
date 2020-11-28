@@ -10,10 +10,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 nunjucks.configure('views', {
-    autoescape: false,
-    express: app
-  });
-
+  autoescape: true,
+  express: app
+});
 //https://www.npmjs.com/package/express-session
 //https://developer.mozilla.org/es/docs/Web/HTTP/Headers/Set-Cookie
 //http://expressjs.com/en/resources/middleware/cookie-session.html
