@@ -17,7 +17,7 @@ var suma = 0;
 var max =Math.max.apply(null,materias)
     
 //console.log(materia[1])
-//console.log(max)
+//console.log(max);
 //console.log(materia[materias.indexOf(max)])
    
     
