@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+	<meta charset="UTF-8">
+	<title>ejercicio 1</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<body onload="detectmobile()">
+		<h1>Hola</h1>
+		<p id="a"></p>
+		<p id="i"></p>
+		<p id="w"></p>
+		
+	</body>
+	<script>
+	function detectmobile() { 
+	
+	 if( navigator.userAgent.match(/Android/i)){
+		 return alert(document.getElementById("a").innerHTML="Queres descargar la app para Android??");
+	 }else if(navigator.userAgent.match(/iPhone/i)
+	 || navigator.userAgent.match(/iPad/i)
+	 || navigator.userAgent.match(/iPod/i)){
+		return alert(document.getElementById("i").innerHTML="Queres descargar la app para Iphone??");
+	 }else{
+		 return alert(document.getElementById("w").innerHTML="para windows no hay app :(");
+	 }
+
+	}		
+	//console.log(detectmobile())
+	//console.log(navigator.userAgent)
+	</script>
+	
+
+</html>
