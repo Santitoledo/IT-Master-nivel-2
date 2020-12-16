@@ -1,19 +1,17 @@
 {
-  "name": "ejer3",
+  "name": "detectmobilenode",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "-": "0.0.1",
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1",
-    "nunjucks": "^3.2.2",
-    "save": "^2.4.0"
+    "express": "^4.16.3",
+    "is-mobile": "^1.0.0",
+    "node-fetch": "^2.6.1",
+    "nunjucks": "^3.2.2"
   }
 }
