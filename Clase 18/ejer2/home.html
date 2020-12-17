@@ -17,15 +17,18 @@ var date = new Date();
 var  day = date.getDate();
 var month = date.getMonth() + 1;
 var year = date.getFullYear();
+var hours = date.getHours();
+var min = date.getMinutes();
+var seg = date.getSeconds();
 function init(){
     const home = localStorage.getItem("home");
         if(!home){
-            document.getElementById('tit').innerHTML = 'bienvenido 😉';
+            document.getElementById('tit').innerHTML = 'Bienvenido 😉';
             localStorage.setItem("home",date);
         }
         else{
-            document.getElementById('tit').innerHTML = `Otra vez aqui! `;
-            document.getElementById('date').innerHTML = `Última visita ${day}-${month}-${year}`;
+            document.getElementById('tit').innerHTML = `Otra vez aquí!`;
+            document.getElementById('date').innerHTML = `Última visita ${day}-${month}-${year} a las ${hours}:${min}:${seg}`;
             localStorage.setItem("home",date);
         }
         }
