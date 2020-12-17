@@ -28,11 +28,11 @@
                         {provincia:'Jujuy',poblacion:770881}
                         ]
 var orden = provin.sort((a, b) => b.poblacion - a.poblacion);
-var pro = []
-var pobla = []
+var pro = [];
+var pobla = [];
 for(i=0;i<5;i++){
-pro.push(orden[i].provincia)
-pobla.push(orden[i].poblacion)
+pro.push(orden[i].provincia);
+pobla.push(orden[i].poblacion);
 }    
     var ctx = document.getElementById('myChart').getContext('2d');
     // type: bar o pie o line
