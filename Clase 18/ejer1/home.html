@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Langar&display=swap" rel="stylesheet">
+    <title>home</title>
+</head>
+<body onclick="init()">
+    <div id="contain1">
+        <h1 id="tit">Seguro que quieres continuar?</h1>
+        <button onclick="entrar()" value="ir">obvio</button>
+    </div>
+</body>
+<script>
+    function init(){
+    const home = localStorage.getItem("home");
+        if(home && home === '1'){
+            window.location.href='page.html'}
+        else{
+            return null
+        }
+        }
+    function entrar(){
+    localStorage.setItem("home","1");
+    window.location.href='page.html';
+    }
+    </script>
+</html>

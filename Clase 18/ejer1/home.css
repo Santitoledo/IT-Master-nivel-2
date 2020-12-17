@@ -1,0 +1,26 @@
+body{
+    background-color: rgb(9, 9, 27);
+}
+#contain1{
+   width: 60%;
+   margin:5% 20%;
+}
+#tit{
+    font-family: 'Langar', cursive;
+    color: white;
+}
+#contain{
+    width: 60%;
+    margin:5% 20%
+}
+#mensaje{
+    color: wheat;
+    text-align: center;
+    width: 100%;
+    font-size: 3em;
+    font-family: 'Langar', cursive;
+}
+img{
+    width: 60%;
+    margin:1% 20%;
+}
