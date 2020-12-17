@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="home.css">
+    <title>ejercicio 2</title>
+</head>
+<body onload="init()">
+    <div id="contain1">
+         <h1 id="tit"></h1>
+         <h2 id="date"></h2>
+    </div>
+</body>
+<script>
+var date = new Date();
+var  day = date.getDate();
+var month = date.getMonth() + 1;
+var year = date.getFullYear();
+function init(){
+    const home = localStorage.getItem("home");
+        if(!home){
+            document.getElementById('tit').innerHTML = 'bienvenido 😉';
+            localStorage.setItem("home",date);
+        }
+        else{
+            document.getElementById('tit').innerHTML = `Otra vez aqui! `;
+            document.getElementById('date').innerHTML = `Última visita ${day}-${month}-${year}`;
+            localStorage.setItem("home",date);
+        }
+        }
+    
+</script>
+</html>
