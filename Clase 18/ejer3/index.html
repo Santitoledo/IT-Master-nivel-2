@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>ejercicio 3</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+   
+</head>
+<body>
+    <!-- 
+        Basado en https://www.chartjs.org/docs/latest/
+     -->
+     <div id="contenedor">
+        <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+    <script>
+        const provin = [{provincia:'BsAs',poblacion:17541141},
+                        {provincia:'CABA',poblacion:3075646},
+                        {provincia:'Santa Fe',poblacion:1415438},
+                        {provincia:'Chaco',poblacion:1204541},
+                        {provincia:'Chubut',poblacion:618994},
+                        {provincia:'Córdoba',poblacion:3760450},
+                        {provincia:'Corrientes',poblacion:1120801},
+                        {provincia:'Entre Ríos',poblacion:1385961},
+                        {provincia:'Formosa',poblacion:605193},
+                        {provincia:'Jujuy',poblacion:770881}
+                        ]
+var orden = provin.sort((a, b) => b.poblacion - a.poblacion);
+var pro = []
+var pobla = []
+for(i=0;i<5;i++){
+pro.push(orden[i].provincia)
+pobla.push(orden[i].poblacion)
+}    
+    var ctx = document.getElementById('myChart').getContext('2d');
+    // type: bar o pie o line
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: pro,
+            datasets: [{
+                label: 'Mi mejor gráfico',
+                data: pobla,
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1.5
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    </script>  
+</body>
+</html>
