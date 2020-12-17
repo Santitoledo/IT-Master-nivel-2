@@ -7,10 +7,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Langar&display=swap" rel="stylesheet">
     <title>page</title>
 </head>
-<body>
+<body onload="init()">
     <div id="contain">
     <img src="https://colinbendell.cloudinary.com/image/upload/c_crop,f_auto,g_auto,h_350,w_400/v1512090971/Wizard-Clap-by-Markus-Magnusson.gif" alt="">
     <p id="mensaje">ya no puedes salir de aqui!</p>
     </div>
 </body>
+<script>
+    function init(){
+    const home = localStorage.getItem("home")
+    if(!home || home !== '1'){
+        window.location.href='home.html';
+     }
+    else{
+        return null
+     }
+    }
+</script>
 </html>
